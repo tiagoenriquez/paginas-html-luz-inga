@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/inga.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Luz Ingá</title>
+</head>
+<body>
+    <h1>Cadastro de Empresas</h1>
+    <form action="produtos.html" method="get">
+        <div class="campo-de-digitacao">
+            <label for="nome">Nome da Empresa</label>
+            <input type="text" name="nome" id="nome" autofocus required>
+        </div>
+        <div class="campo-de-digitacao">
+            <label for="email">E-mail da Empresa</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <button type="submit" onclick="exibirMensagemDeSucesso()">Cadastrar Empresas</button>
+    </form>
+    <script>
+        function exibirMensagemDeSucesso() {
+            if (!campoVazio('nome') && !campoVazio('email') && checarEmail()) {
+                alert('Empresa cadastrada com sucesso!');
+            }
+        }
+
+        /**
+         * 
+         * @param {string} campo 
+         * @returns {boolean} 
+         */
+        function campoVazio(campo) {
+            return document.getElementById(campo).value === '';
+        }
+
+        /**
+         * 
+         * @returns {boolean}
+         */ 
+        function checarEmail() {
+            /** @type {HTMLInputElement} */ const emailElement = document.getElementById('email');
+            const email = emailElement.value;
+            return email.includes('@') && !email.replace('@', '').includes('@');
+        }
+    </script>
+</body>
+</html>
