@@ -20,6 +20,7 @@
         </div>
         <button type="submit" onclick="exibirMensagemDeSucesso()">Cadastrar Empresas</button>
     </form>
+
     <script>
         function exibirMensagemDeSucesso() {
             if (!campoVazio('nome') && !campoVazio('email') && checarEmail()) {
@@ -28,23 +29,27 @@
         }
 
         /**
-         * 
          * @param {string} campo 
-         * @returns {boolean} 
          */
         function campoVazio(campo) {
             return document.getElementById(campo).value === '';
         }
 
-        /**
-         * 
-         * @returns {boolean}
-         */ 
         function checarEmail() {
             /** @type {HTMLInputElement} */ const emailElement = document.getElementById('email');
             const email = emailElement.value;
-            return email.includes('@') && !email.replace('@', '').includes('@');
+            let ocorrencias = 0;
+            for (let i = 0; i < email.length; i++) {
+                if (email.charAt(i) === '@') {
+                    ocorrencias++;
+                }
+            }
+            if (ocorrencias === 1) {
+                return true;
+            }
+            return false;
         }
     </script>
+    
 </body>
 </html>
